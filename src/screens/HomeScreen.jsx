@@ -36,15 +36,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 25,
     backgroundColor: "#ff007a",
-    fontFamily: "Montserrat-Black",
     gap: 10,
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
     color: "white",
-    fontWeight: "700",
-    fontFamily: "Montserrat-Black",
+    fontFamily: "Montserrat-Bold",
   },
   button: {
     backgroundColor: "white",
