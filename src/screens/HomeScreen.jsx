@@ -1,28 +1,35 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import ButtonComponent from "../components/Button"
+import DefaultButton from "../components/DefaultButton";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Image 
-      width={400}
-      height={400}
-      source={require("../../assets/imgs/ong_logo.png")}/>
+      <Image
+        width={400}
+        height={400}
+        source={require("../../assets/imgs/ong_logo.png")}
+      />
       <Text style={styles.title}>O amor ganhando forma</Text>
-      <ButtonComponent
+      <DefaultButton
         title="Login"
         style={styles.button}
+        mode={"contained"}
+        textColor={"#ff007a"}
+        onPress={() => navigation.navigate("Login")}
+      />
+      <DefaultButton
+        title="Sou funcionário"
+        style={styles.button}
+        mode={"contained"}
+        textColor={"#ff007a"}
         onPress={() => navigation.navigate("Details")}
       />
-      <ButtonComponent
-        title="Go to Details"
-        style={styles.button}
-        onPress={() => navigation.navigate("Details")}
-      />
-      <ButtonComponent
-        title="Go to Details"
-        style={styles.button}
+      <DefaultButton
+        title="Criar conta"
+        style={styles["button-register"]}
+        mode={"outlined"}
+        textColor={"#fff"}
         onPress={() => navigation.navigate("Details")}
       />
     </View>
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 25,
     backgroundColor: "#ff007a",
-    gap: 10,
+    gap: 15,
   },
   title: {
     fontSize: 24,
@@ -50,7 +57,15 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 20
+  },
+  "button-register": {
+    width: "100%",
+    height: 50,
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "white",
   },
 });
 
