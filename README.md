@@ -1,7 +1,7 @@
 # ONG Ser Amor
 <div style="display: flex; justify-content: space-around;">
-  <img src="https://github.com/samuel-santinelli/Ong-ser-amor/assets/89052474/4f1c2b19-f075-40a2-a4b7-f5ce2e189db3" alt="iPhone 15 Pro (1)" height="300px">
-  <img src="https://github.com/samuel-santinelli/Ong-ser-amor/assets/89052474/88c5de8b-1e37-49bc-902e-402c8968ff41" alt="iPhone 15 Pro" height="300px">
+  <img src="https://github.com/samuel-santinelli/Ong-ser-amor/assets/89052474/4f1c2b19-f075-40a2-a4b7-f5ce2e189db3" alt="iPhone 15 Pro (1)" >
+  <img src="https://github.com/samuel-santinelli/Ong-ser-amor/assets/89052474/88c5de8b-1e37-49bc-902e-402c8968ff41" alt="iPhone 15 Pro" >
 </div>
 
 Este é um projeto desenvolvido como parte de um trabalho acadêmico, utilizando tecnologias modernas como React, React Native Paper, Node.js e PostgreSQL. Nosso objetivo é criar uma aplicação para a ONG Ser Amor, visando melhorar a eficiência e o alcance de suas ações.
