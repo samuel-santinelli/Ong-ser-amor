@@ -9,7 +9,9 @@ const DefaultCheckbox = ({ status, setStatus, label }) => {
         color={"#ff007a"}
         onPress={setStatus}
       />
-      <Text style={{fontFamily: "Montserrat-Medium"}}>{label}</Text>
+      <Text style={{fontFamily: "Montserrat-Medium"}}>
+        {label}
+        </Text>
     </View>
   );
 };
