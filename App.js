@@ -23,5 +23,10 @@ export default function App() {
     'Montserrat-Thin': require('./assets/fonts/Montserrat-Thin.ttf'),
     'Montserrat-ThinItalic': require('./assets/fonts/Montserrat-ThinItalic.ttf'),
   });
+
+  if(!fontsLoaded){
+    return undefined
+  }
+
   return <AppNavigator />;
 }
