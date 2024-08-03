@@ -2,7 +2,7 @@ import { SafeAreaView, StyleSheet, View } from "react-native";
 
 const DefaultView = ({ children }) => {
   return (
-    <View style={[styles.container, { justifyContent: "center" }]} >
+    <View style={[styles.container, { justifyContent: "center" }]}>
       {children}
     </View>
   );
@@ -11,7 +11,7 @@ const DefaultView = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 25,
+    padding: 25,    
     gap: 15,
   },
 });
