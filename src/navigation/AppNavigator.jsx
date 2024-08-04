@@ -19,6 +19,7 @@ const AppNavigator = () => {
               backgroundColor: "#ff007a",
             },
             headerTintColor: "#ff007a",
+            headerShown: false,
             headerTitleStyle: {
               fontFamily: "Montserrat-SemiBold",
             },
@@ -31,6 +32,7 @@ const AppNavigator = () => {
             headerStyle: {
               backgroundColor: "#ff007a",
             },
+            headerShown: false,
             headerTintColor: "#fff",
             headerTitleStyle: {
               fontFamily: "Montserrat-SemiBold",
@@ -44,6 +46,7 @@ const AppNavigator = () => {
             headerStyle: {
               backgroundColor: "#ff007a",
             },
+            headerShown: true,
             headerTintColor: "#fff",
             headerTitleStyle: {
               fontFamily: "Montserrat-SemiBold",
@@ -57,6 +60,8 @@ const AppNavigator = () => {
             headerStyle: {
               backgroundColor: "#ff007a",
             },
+            headerShown: true,
+            headerTitle: "",
             headerTintColor: "#fff",
             headerTitleStyle: {
               fontFamily: "Montserrat-SemiBold",
