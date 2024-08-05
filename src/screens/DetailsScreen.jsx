@@ -3,10 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, BottomNavigation, Icon } from 'react-native-paper';
+import { getToken } from '../services/token/TokenManager';
 
 
 const Tab = createBottomTabNavigator();
-const DetailsScreen = () => {
+const DetailsScreen = () => {  
   return (
     <Tab.Navigator
       screenOptions={{
@@ -101,7 +102,7 @@ const DetailsScreen = () => {
 function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text variant="headlineMedium">Home!</Text>
+      <Text variant="headlineMedium">Home</Text>
     </View>
   );
 }
