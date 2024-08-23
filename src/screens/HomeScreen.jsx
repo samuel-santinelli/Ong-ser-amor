@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
         style={styles["button-register"]}
         mode={"outlined"}
         textColor={"#fff"}
-        onPress={() => navigation.navigate("Details")}
+        onPress={() => navigation.navigate("Register")}
       />
     </View>
   );
