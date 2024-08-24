@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 const Stack = createStackNavigator();
 
@@ -34,7 +35,6 @@ const AppNavigator = () => {
               fontFamily: "Montserrat-SemiBold",
             },
           }}
-          na
           name="Details"
           component={DetailsScreen}
         />
@@ -48,9 +48,21 @@ const AppNavigator = () => {
               fontFamily: "Montserrat-SemiBold",
             },
           }}
-          na
           name="Login"
           component={LoginScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerStyle: {
+              backgroundColor: "#ff007a",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontFamily: "Montserrat-SemiBold",
+            },
+          }}
+          name="Register"
+          component={RegisterScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
