@@ -6,7 +6,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import DefaultButton from "../components/DefaultButton";
 
-const LoginScreen = () => {
+  const LoginScreen = ({ navigation }) => {
   const [statusRememberMe, setStatusRememberMe] = useState(false);
 
   function changeRememberMe(){
@@ -35,10 +35,10 @@ const LoginScreen = () => {
         textColor={"#fff"}
         onPress={() => navigation.navigate("Details")}
       />
-      <View style={{ justifyContent: "flex-end" }}>
+      <View style={{ justifyContent: "flex-end", marginTop: 20}}>
         <Text style={{ textAlign: "center", fontFamily: "Montserrat-Medium" }}>
           Não possui conta?{" "}
-          <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}>
+          <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}  onPress={() => navigation.navigate("Register")}>
             Crie já
           </Text>
         </Text>
