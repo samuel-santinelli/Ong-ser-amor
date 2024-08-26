@@ -8,8 +8,25 @@ import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 
 export default function App() {
+  const theme = {
+    ...DefaultTheme,
+    fonts: {
+      regular: {
+        fontFamily: 'Montserrat-Regular'
+      },
+      medium: {
+        fontFamily: 'Montserrat-Medium'
+      },
+      light: {
+        fontFamily: 'Montserrat-Light'
+      },
+      thin: {
+        fontFamily: 'Montserrat-Thin'
+      },
+    },
+  };
   return (
-    <PaperProvider theme={MD3LightTheme}>
+    <PaperProvider theme={theme}>
       <NavigationContainer theme={LightTheme}>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
