@@ -1,25 +1,44 @@
 import DefaultView from "../components/DefaultView";
 import DefaultTitle from "../components/DefaultTitle";
 import DefaultInput from "../components/DefaultInput";
-import DefaultCheckbox from "../components/DefaultCheckbox";
-import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import DefaultButton from "../components/DefaultButton";
+import { Icon, TextInput } from "react-native-paper";
+import { useState } from "react";
 
-const RegisterScreen = () => {
-  const [statusRememberMe, setStatusRememberMe] = useState(false);
-
-  function changeRememberMe(){
-    setStatusRememberMe(!statusRememberMe);
-  }
-
+const RegisterScreen = ({ navigation }) => {
+  const [showPassord, setShowPassord] = useState(true);
+  const [showConfirmPassord, setShowConfirmPassord] = useState(true);
   return (
     <DefaultView>
       <DefaultTitle title={"Criar conta"} />
-      <DefaultInput label={"Nome"} mode="outlined" />
-      <DefaultInput label={"Celular"} mode="outlined" />
-      <DefaultInput label={"E-mail"} mode="outlined" />
-      <DefaultInput label={"Senha"} mode="outlined" />
+      <DefaultInput
+        label={"Nome"}
+        mode="outlined"
+        mask={""}
+        secureTextEntry={false}
+      />
+      <DefaultInput label={"Celular"} mode="outlined" mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]} secureTextEntry={false}/>
+      <DefaultInput
+        label={"E-mail"}
+        mode="outlined"
+        mask={""}
+        secureTextEntry={false}
+      />
+      <DefaultInput
+        label={"Senha"}
+        mode="outlined"
+        mask={""}
+        right={<TextInput.Icon icon={showPassord ? "eye" : "eye-off"} color="#ff007a" onPress={() => setShowPassord(!showPassord)} />}
+        secureTextEntry={showPassord}
+      />
+      <DefaultInput
+        label={"Confirmar senha"}
+        mode="outlined"
+        mask={""}
+        right={<TextInput.Icon icon={showConfirmPassord ? "eye" : "eye-off"} color="#ff007a" onPress={() => setShowConfirmPassord(!showConfirmPassord)} />}
+        secureTextEntry={showPassord}
+      />
       <DefaultButton
         title="Criar"
         style={styles.button}
@@ -30,7 +49,10 @@ const RegisterScreen = () => {
       <View style={{ justifyContent: "flex-end", marginTop: 20 }}>
         <Text style={{ textAlign: "center", fontFamily: "Montserrat-Medium" }}>
           Já possui conta?{" "}
-          <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}>
+          <Text
+            style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}
+            onPress={() => navigation.navigate("Login")}
+          >
             Entre já
           </Text>
         </Text>
@@ -52,7 +74,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
-    marginTop: 20
+    marginTop: 20,
   },
 });
 export default RegisterScreen;

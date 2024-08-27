@@ -5,19 +5,39 @@ import DefaultCheckbox from "../components/DefaultCheckbox";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import DefaultButton from "../components/DefaultButton";
+import { TextInput } from "react-native-paper";
 
-  const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
   const [statusRememberMe, setStatusRememberMe] = useState(false);
+  const [showPassord, setShowPassord] = useState(true);
+  
 
-  function changeRememberMe(){
+  function changeRememberMe() {
     setStatusRememberMe(!statusRememberMe);
   }
 
   return (
     <DefaultView>
       <DefaultTitle title={"Login"} />
-      <DefaultInput label={"E-mail"} mode="outlined" />
-      <DefaultInput label={"Senha"} mode="outlined" />
+      <DefaultInput
+        label={"E-mail"}
+        mode="outlined"
+        mask={""}
+        secureTextEntry={false}
+      />
+      <DefaultInput
+        label={"Senha"}
+        mode="outlined"
+        mask={""}
+        right={
+          <TextInput.Icon
+            icon={showPassord ? "eye" : "eye-off"}
+            color="#ff007a"
+            onPress={() => setShowPassord(!showPassord)}
+          />
+        }
+        secureTextEntry={showPassord}
+      />
       <View style={styles.container}>
         <DefaultCheckbox
           setStatus={changeRememberMe}
@@ -35,10 +55,13 @@ import DefaultButton from "../components/DefaultButton";
         textColor={"#fff"}
         onPress={() => navigation.navigate("Details")}
       />
-      <View style={{ justifyContent: "flex-end", marginTop: 20}}>
+      <View style={{ justifyContent: "flex-end", marginTop: 20 }}>
         <Text style={{ textAlign: "center", fontFamily: "Montserrat-Medium" }}>
           Não possui conta?{" "}
-          <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}  onPress={() => navigation.navigate("Register")}>
+          <Text
+            style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}
+            onPress={() => navigation.navigate("Register")}
+          >
             Crie já
           </Text>
         </Text>
