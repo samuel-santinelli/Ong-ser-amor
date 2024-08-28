@@ -42,7 +42,7 @@ const LoginScreen = ({ navigation }) => {
         <DefaultCheckbox
           setStatus={changeRememberMe}
           status={statusRememberMe}
-          label={"Lembrar-me"}
+          label={"Lembre-se de mim"}
         />
         <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}>
           Esqueci minha senha
@@ -59,7 +59,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={{ textAlign: "center", fontFamily: "Montserrat-Medium" }}>
           Não possui conta?{" "}
           <Text
-            style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}
+            style={{ color: "#ff007a", fontFamily: "Montserrat-Bold" }}
             onPress={() => navigation.navigate("Register")}
           >
             Crie já
@@ -73,13 +73,13 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center",    
     justifyContent: "space-between",
   },
   button: {
-    backgroundColor: "#ff007a",
-    width: "100%",
+    backgroundColor: "#ff007a",  
     height: 50,
+    marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
