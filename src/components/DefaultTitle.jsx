@@ -6,8 +6,7 @@ const DefaultTitle = ({ title }) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 34,
-    marginBottom: 20,
+    fontSize: 30,
     color: "#ff007a",
     textAlign: "center",
     fontFamily: "Montserrat-Bold",

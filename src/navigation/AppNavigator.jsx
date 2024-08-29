@@ -5,6 +5,7 @@ import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import ForgotMyPassword from "../screens/ForgotMyPasswordScreen";
 
 const Stack = createStackNavigator();
 
@@ -63,6 +64,19 @@ const AppNavigator = () => {
           }}
           name="Register"
           component={RegisterScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerStyle: {
+              backgroundColor: "#ff007a",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontFamily: "Montserrat-SemiBold",
+            },
+          }}
+          name="Forgot my password"
+          component={ForgotMyPassword}
         />
       </Stack.Navigator>
     </NavigationContainer>

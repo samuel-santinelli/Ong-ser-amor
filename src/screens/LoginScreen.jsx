@@ -44,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
           status={statusRememberMe}
           label={"Lembre-se de mim"}
         />
-        <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }}>
+        <Text style={{ color: "#ff007a", fontFamily: "Montserrat-Medium" }} onPress={() => navigation.navigate("Forgot my password")}>
           Esqueci minha senha
         </Text>
       </View>
