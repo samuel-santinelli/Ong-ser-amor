@@ -23,8 +23,7 @@ const ForgotMyPassword = ({ navigation }) => {
 
   const onSubmit = (data) => {
     setLoading(true);
-    setTimeout(() => {
-      console.log(data);
+    setTimeout(() => {      
       setLoading(false);
     }, 2000);
   };
