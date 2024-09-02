@@ -69,10 +69,15 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-    <DefaultView>
+    <DefaultView color={loading ? "#ff007a" : ""}>
       {loading ? (
         <View
-          style={{ justifyContent: "center", alignItems: "center", gap: 30 }}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 30,
+            backgroundColor: "#ff007a",
+          }}
         >
           {/* <Text style={{fontSize: 18}}>Validando suas informações</Text> */}
           <DefaultSpinner />
