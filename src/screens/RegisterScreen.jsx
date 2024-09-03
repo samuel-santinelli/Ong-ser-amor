@@ -51,10 +51,10 @@ const RegisterScreen = ({ navigation }) => {
         telefone: FormatPhoneNumber(data.phone),
       };
       const response = await createUser(newData);
-      setLoading(false);      
+      setLoading(false);
 
       if (response.status === 201) {
-        reset();        
+        reset();
         navigation.navigate("Details");
       } else {
         setResponseError("Erro ao criar usuário");
@@ -66,10 +66,15 @@ const RegisterScreen = ({ navigation }) => {
   }
 
   return (
-    <DefaultView>
+    <DefaultView color={loading ? "#ff007a" : ""}>
       {loading ? (
         <View
-          style={{ justifyContent: "center", alignItems: "center", gap: 30 }}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 30,
+            backgroundColor: "#ff007a",
+          }}
         >
           {/* <Text style={{fontSize: 18}}>Validando suas informações</Text> */}
           <DefaultSpinner />
