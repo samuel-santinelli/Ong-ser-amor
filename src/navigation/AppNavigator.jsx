@@ -7,11 +7,12 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import ForgotMyPassword from "../screens/ForgotMyPasswordScreen";
 import useAuthNavigation from "../services/auth/useAuthNavigation";
+import { Avatar, Button } from "react-native-paper";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const { isAuthenticated } = useAuthNavigation();    
+  const { isAuthenticated } = useAuthNavigation();
 
   return (
     <NavigationContainer>
@@ -22,26 +23,34 @@ const AppNavigator = () => {
             backgroundColor: "#ff007a",
           },
           headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontFamily: "Montserrat-SemiBold",
-          },
+          // headerTitleStyle: {
+          //   fontFamily: "Montserrat-SemiBold",
+          // },
         }}
       >
         {isAuthenticated ? (
           <>
             <Stack.Screen
               name="Details"
-              component={DetailsScreen}
-              options={{ headerShown: false }}
+              component={DetailsScreen}              
+              options={{
+                headerShown: false,                
+                headerLeft: () => {
+                  <Avatar.Text size={24} label="XD" />;
+                },
+                headerRight: () => {
+                  <Avatar.Text size={24} label="SA"/>
+                }
+              }}
             />
           </>
         ) : (
           <>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="Login"
               component={LoginScreen}
