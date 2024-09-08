@@ -1,8 +1,8 @@
 import { SafeAreaView, StyleSheet, View } from "react-native";
 
-const DefaultView = ({ children }) => {
+const DefaultView = ({ children, color }) => {
   return (
-    <View style={[styles.container, { justifyContent: "center" }]}>
+    <View style={[styles.container, { justifyContent: "center", backgroundColor: color }]}>
       {children}
     </View>
   );
