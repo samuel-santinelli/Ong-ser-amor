@@ -6,83 +6,59 @@ import DetailsScreen from "../screens/DetailsScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import ForgotMyPassword from "../screens/ForgotMyPasswordScreen";
+import useAuthNavigation from "../services/auth/useAuthNavigation";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
+  const { isAuthenticated } = useAuthNavigation();    
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          options={{
-            headerStyle: {
-              backgroundColor: "#ff007a",
-            },
-            headerTintColor: "#ff007a",
-            headerShown: false,
-            headerTitleStyle: {
-              fontFamily: "Montserrat-SemiBold",
-            },
-          }}
-          name="Home"
-          component={HomeScreen}
-        />
-        <Stack.Screen
-          options={{
-            headerStyle: {
-              backgroundColor: "#ff007a",
-            },
-            headerShown: false,
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontFamily: "Montserrat-SemiBold",
-            },
-          }}
-          name="Details"
-          component={DetailsScreen}
-        />
-        <Stack.Screen
-          options={{
-            headerStyle: {
-              backgroundColor: "#ff007a",
-            },
-            headerShown: true,
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontFamily: "Montserrat-SemiBold",
-            },
-          }}
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen
-          options={{
-            headerStyle: {
-              backgroundColor: "#ff007a",
-            },
-            headerShown: true,
-            headerTitle: "",
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontFamily: "Montserrat-SemiBold",
-            },
-          }}
-          name="Register"
-          component={RegisterScreen}
-        />
-        <Stack.Screen
-          options={{
-            headerStyle: {
-              backgroundColor: "#ff007a",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontFamily: "Montserrat-SemiBold",
-            },
-          }}
-          name="Forgot my password"
-          component={ForgotMyPassword}
-        />
+      <Stack.Navigator
+        initialRouteName={isAuthenticated ? "Details" : "Login"}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ff007a",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontFamily: "Montserrat-SemiBold",
+          },
+        }}
+      >
+        {isAuthenticated ? (
+          <>
+            <Stack.Screen
+              name="Details"
+              component={DetailsScreen}
+              options={{ headerShown: false }}
+            />
+          </>
+        ) : (
+          <>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{ headerShown: true }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{ headerShown: true }}
+            />
+            <Stack.Screen
+              name="Forgot my password"
+              component={ForgotMyPassword}
+              options={{ headerShown: true }}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
