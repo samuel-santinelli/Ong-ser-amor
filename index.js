@@ -6,6 +6,8 @@ const Stack = createStackNavigator();
 const { LightTheme } = adaptNavigationTheme({ reactNavigationLight: DefaultTheme });
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+// Only import react-native-gesture-handler on native platforms
+import 'react-native-gesture-handler';
 
 export default function App() {
   const theme = {

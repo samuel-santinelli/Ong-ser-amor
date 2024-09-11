@@ -17,4 +17,5 @@ const DefaultButton = ({ onPress, title, style, icon, mode, loading, loadingText
   </Button>
 );
 
+
 export default DefaultButton;

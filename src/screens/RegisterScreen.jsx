@@ -107,7 +107,7 @@ const RegisterScreen = ({ navigation }) => {
           )}
 
           <DefaultInput
-            label={"Celular"}
+            label={"Telefone"}
             mode="outlined"
             keyboardType={"numeric"}
             autoCorrect={false}
@@ -170,7 +170,7 @@ const RegisterScreen = ({ navigation }) => {
             onChangeText={(text) => {
               setValue("email", text);
               clearErrors("email");
-              setResponseError(""); // Clear the specific email error if corrected
+              setResponseError("");
             }}
             onSubmitEditing={() => passwordRef.current.focus()}
             returnKeyType="next"
