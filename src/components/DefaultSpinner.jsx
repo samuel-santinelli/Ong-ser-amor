@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Fold } from "react-native-animated-spinkit";
 
 const DefaultSpinner = () => {
-  const colorsArray = [        
-    "#FD0101",
+  const colorsArray = [            
     "#FFD700",
     "#6B8E23",
     "#4B0082",

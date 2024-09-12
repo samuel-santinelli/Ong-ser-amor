@@ -7,6 +7,8 @@ import DefaultLabel from "../components/DefaultLabel";
 import DefaultInput from "../components/DefaultInput";
 import DefaultButton from "../components/DefaultButton";
 import { removeToken } from "../services/token/TokenManager";
+import { useDispatch } from "react-redux";
+import {clearToken} from "../reducers/authSlice"
 
 const Tab = createBottomTabNavigator();
 
@@ -135,6 +137,8 @@ function DonationsScreen() {
 }
 
 function ProfileScreen() {
+
+  const dispatch = useDispatch();
   return (
     <DefaultView>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -277,7 +281,7 @@ function ProfileScreen() {
           icon={"logout"}
           textColor={"#ff007a"}
           style={styles.logout_button}
-          onPress={() => removeToken()}
+          onPress={() => dispatch(clearToken())}
         />
       </View>
     </DefaultView>

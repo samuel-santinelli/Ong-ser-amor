@@ -19,8 +19,7 @@ export async function createUser(data) {
       }
     } else {
       return 'Não foi possível conectar aos nossos servidores no momento. Por favor, tente novamente mais tarde.';
-    }
-    throw error; // Opcional: relançar o erro se você quiser que ele seja tratado em outro lugar
+    }    
   }
 }
 
@@ -40,7 +39,6 @@ export async function loginUser(data) {
       }
     } else {
       return 'Não foi possível conectar aos nossos servidores no momento. Por favor, tente novamente mais tarde.';
-    }
-    throw error; // Opcional: relançar o erro se você quiser que ele seja tratado em outro lugar
+    }    
   }
 }

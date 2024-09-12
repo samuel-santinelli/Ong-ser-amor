@@ -9,6 +9,9 @@ import { TextInput } from "react-native-paper";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../services/api";
 import DefaultSpinner from "../components/DefaultSpinner";
+import useAuthNavigation from "../services/auth/useAuthNavigation";
+import {setToken} from "../reducers/authSlice"
+import { useDispatch } from "react-redux";
 
 const LoginScreen = ({ navigation }) => {
   const [statusRememberMe, setStatusRememberMe] = useState(false);
@@ -17,6 +20,8 @@ const LoginScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const { isAuthenticated } = useAuthNavigation();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -43,19 +48,20 @@ const LoginScreen = ({ navigation }) => {
     setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 4000));
 
       let newData = {
         email: data.email,
         senha: data.password,
       };
 
-      const response = await loginUser(newData);
+      const response = await loginUser(newData);      
+      dispatch(setToken(response.data.token))
+      
       setLoading(false);
 
-      if (response.status === 200) {
+      if (response.status === 200 && isAuthenticated === true) {
         reset();
-        navigation.navigate("Details");
+        navigation.navigate('Details');
       } else {
         setResponseError(
           "Ocorreu um erro na tentativa de login. Por favor, verifique os dados e tente novamente."

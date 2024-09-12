@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
-import { getToken } from '../token/TokenManager'; // Ajuste o caminho conforme necessário
+import { getToken } from '../token/TokenManager'; 
+import { useSelector } from 'react-redux';
 
 const useAuthNavigation = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState();
+  const token = useSelector((state) => state.auth.token);
+  
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      const token = await getToken();
       setIsAuthenticated(!!token); 
     };
 
     checkAuthentication();
-  }, []);
+  }, [token]);
 
   return { isAuthenticated };
 };
