@@ -5,11 +5,14 @@ import { useSelector } from 'react-redux';
 const useAuthNavigation = () => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const token = useSelector((state) => state.auth.token);
-  
 
+  
+  
+  
   useEffect(() => {
     const checkAuthentication = async () => {
-      setIsAuthenticated(!!token); 
+      const auth = await getToken();      
+      setIsAuthenticated(!!auth); 
     };
 
     checkAuthentication();

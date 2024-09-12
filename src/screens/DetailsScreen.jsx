@@ -8,7 +8,7 @@ import DefaultInput from "../components/DefaultInput";
 import DefaultButton from "../components/DefaultButton";
 import { removeToken } from "../services/token/TokenManager";
 import { useDispatch } from "react-redux";
-import {clearToken} from "../reducers/authSlice"
+import { clearToken } from "../reducers/authSlice";
 
 const Tab = createBottomTabNavigator();
 
@@ -137,12 +137,16 @@ function DonationsScreen() {
 }
 
 function ProfileScreen() {
-
   const dispatch = useDispatch();
+
   return (
     <DefaultView>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Avatar.Text label="TS" style={{ backgroundColor: "#ff007a" }} size={100} />
+        <Avatar.Text
+          label="TS"
+          style={{ backgroundColor: "#ff007a" }}
+          size={100}
+        />
         {/* <Icon size={40} source={"pencil-circle"}/> */}
       </View>
       <DefaultInput

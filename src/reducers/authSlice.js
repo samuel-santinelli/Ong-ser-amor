@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { removeToken, storeToken } from '../services/token/TokenManager';
 
 const initialState = {
   token: null, // Estado inicial sem token
@@ -9,10 +10,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload; // Atualiza o token com o payload
+      storeToken(action.payload);
+      state.token = action.payload;
     },
     clearToken: (state) => {
-      state.token = null; // Limpa o token (logout)
+      removeToken();
+      state.token = null;
     },
   },
 });

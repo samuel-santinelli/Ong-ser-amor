@@ -8,13 +8,18 @@ import RegisterScreen from "../screens/RegisterScreen";
 import ForgotMyPassword from "../screens/ForgotMyPasswordScreen";
 import useAuthNavigation from "../services/auth/useAuthNavigation";
 import { Avatar, Button } from "react-native-paper";
+import DefaultSpinner from "../components/DefaultSpinner";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const { isAuthenticated } = useAuthNavigation(true);    
+  const { isAuthenticated } = useAuthNavigation(true);  
 
-  
+  if (isAuthenticated === null) {
+    return (
+      <DefaultSpinner/>
+    );
+  }
 
   return (
     <NavigationContainer>
