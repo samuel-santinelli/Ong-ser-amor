@@ -66,14 +66,13 @@ const RegisterScreen = ({ navigation }) => {
   }
 
   return (
-    <DefaultView color={loading ? "#ff007a" : ""}>
+    <DefaultView>
       {loading ? (
         <View
           style={{
             justifyContent: "center",
             alignItems: "center",
-            gap: 30,
-            backgroundColor: "#ff007a",
+            gap: 30            
           }}
         >
           {/* <Text style={{fontSize: 18}}>Validando suas informações</Text> */}

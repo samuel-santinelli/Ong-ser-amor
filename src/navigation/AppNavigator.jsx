@@ -9,6 +9,7 @@ import ForgotMyPassword from "../screens/ForgotMyPasswordScreen";
 import useAuthNavigation from "../services/auth/useAuthNavigation";
 import { Avatar, Button } from "react-native-paper";
 import DefaultSpinner from "../components/DefaultSpinner";
+import ConfirmOTPCode from "../screens/ConfirmOTPCode";
 
 const Stack = createStackNavigator();
 
@@ -61,17 +62,22 @@ const AppNavigator = () => {
           <Stack.Screen
             name="Login"
             component={LoginScreen}
-            options={{ headerShown: true }}
+            options={{ headerShown: true, headerTitle: "" }}
           />
           <Stack.Screen
             name="Register"
             component={RegisterScreen}
-            options={{ headerShown: true }}
+            options={{ headerShown: true, headerTitle: "" }}
           />
           <Stack.Screen
             name="Forgot my password"
             component={ForgotMyPassword}
-            options={{ headerShown: true }}
+            options={{ headerShown: true, headerTitle: ""}}
+          />
+          <Stack.Screen
+            name="Confirm OTP Code"
+            component={ConfirmOTPCode}
+            options={{ headerShown: true, headerTitle: ""}}
           />
         </>
       )}

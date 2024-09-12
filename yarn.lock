@@ -5629,6 +5629,11 @@ react-native-mask-input@^1.2.3:
   resolved "https://registry.yarnpkg.com/react-native-mask-input/-/react-native-mask-input-1.2.3.tgz#c588b145bb48098be54ac6b40ebe7363a302428b"
   integrity sha512-RWx+gc1EaBslJWR6dsvGdILJ5XvnvZuyEsgJaH9uAMukB3Z9eOlxra1E7Ovck8NSMVcYWpBB/lzojO4LwqqXgA==
 
+react-native-otp-textinput@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-native-otp-textinput/-/react-native-otp-textinput-1.1.6.tgz#4e3560e2e0a30849169cff4e40f3035c594a73fc"
+  integrity sha512-auj4etyrp8N2GWyWTDO2If3uMdSoMR9oSJweQYfNEYP8cJEoEHLtDJhNOBJMwTrkRG8YbYroHg3b30TOhLv9kw==
+
 react-native-paper@^5.12.3:
   version "5.12.5"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-5.12.5.tgz#e255c47f7bf2deb2dd90eaf3831473ef33e400b8"
