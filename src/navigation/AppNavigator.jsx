@@ -38,22 +38,22 @@ const AppNavigator = () => {
     >
       {isAuthenticated ? (
         <>
-          <Stack.Screen
-            name="Details"
-            component={DetailsScreen}              
-            options={{
-              headerShown: false,                
-              headerLeft: () => {
-                <Avatar.Text size={24} label="XD" />;
-              },
-              headerRight: () => {
-                <Avatar.Text size={24} label="SA"/>
-              }
-            }}
-          />
         </>
       ) : (
         <>
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}              
+          options={{
+            headerShown: false,                
+            headerLeft: () => {
+              <Avatar.Text size={24} label="XD" />;
+            },
+            headerRight: () => {
+              <Avatar.Text size={24} label="SA"/>
+            }
+          }}
+        />
           <Stack.Screen
             name="Home"
             component={HomeScreen}
