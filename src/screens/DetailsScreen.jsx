@@ -6,9 +6,9 @@ import DefaultView from "../components/DefaultView";
 import DefaultLabel from "../components/DefaultLabel";
 import DefaultInput from "../components/DefaultInput";
 import DefaultButton from "../components/DefaultButton";
-import { removeToken } from "../services/token/TokenManager";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../reducers/authSlice";
+import DefaultTitle from "../components/DefaultTitle";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +16,7 @@ const DetailsScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
       }}
       tabBar={({ navigation, state, descriptors, insets }) => (
         <BottomNavigation.Bar
@@ -65,6 +65,8 @@ const DetailsScreen = () => {
         component={HomeScreen}
         options={{
           tabBarLabel: "Home",
+          headerTitle: "",
+          headerStyle: { backgroundColor: "#FFD700" },
           tabBarIcon: ({ color, size }) => {
             return (
               <Icon source="home-circle-outline" size={size} color={color} />
@@ -77,6 +79,8 @@ const DetailsScreen = () => {
         component={TaskScreen}
         options={{
           tabBarLabel: "Atividades",
+          headerTitle: "",
+          headerStyle: { backgroundColor: "#4B0082" },
           tabBarIcon: ({ color, size }) => {
             return (
               <Icon source="calendar-check-outline" size={size} color={color} />
@@ -89,6 +93,8 @@ const DetailsScreen = () => {
         component={DonationsScreen}
         options={{
           tabBarLabel: "Doações",
+          headerTitle: "",
+          headerStyle: { backgroundColor: "#09BAE1" },
           tabBarIcon: ({ color, size }) => {
             return (
               <Icon source="hand-coin-outline" size={size} color={color} />
@@ -101,6 +107,8 @@ const DetailsScreen = () => {
         component={ProfileScreen}
         options={{
           tabBarLabel: "Perfil",
+          headerTitle: "",
+          headerStyle: { backgroundColor: "#FD0101" },
           tabBarIcon: ({ color, size }) => {
             return (
               <Icon source="account-circle-outline" size={size} color={color} />
@@ -114,180 +122,365 @@ const DetailsScreen = () => {
 
 function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-    </View>
+    <DefaultView>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 4,
+        }}
+      >
+        <DefaultTitle title={"Eventos"} color={"#FFD700"} />
+        <Icon source="calendar-star" size={30} color="#FFD700" />
+      </View>
+      <DefaultLabel
+        label={
+          "Fique por dentro dos próximos eventos e atividades programadas."
+        }
+      />
+    </DefaultView>
   );
 }
 
 function TaskScreen() {
+  const token = useSelector((state) => state.auth.token);
   return (
-    <View style={styles.container}>
-      <Text>Atividades</Text>
-    </View>
+    <DefaultView>
+      {token ? (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <DefaultTitle title={"Atividades"} color={"#4B0082"} />
+            <Icon source="calendar-check" size={30} color="#4B0082" />
+          </View>
+          <DefaultLabel
+            label={"Veja seu histórico de interações e atividades recentes."}
+          />
+        </>
+      ) : (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <DefaultTitle
+              title={"Crie uma conta ou faça login para acessar a pagina"}
+              color={"#4B0082"}
+            />
+          </View>
+          <View style={{ marginTop: 100 }}>
+            <View style={{ marginTop: 20, gap: 10 }}>
+              <DefaultButton
+                title={"Login"}
+                textColor={"#fff"}
+                style={[styles.button, { backgroundColor: "#4B0082" }]}
+              />
+              <DefaultButton
+                title={"Cadastrar"}
+                icon={"logout"}
+                textColor={"#fff"}
+                style={[styles.button, { backgroundColor: "#4B0082" }]}
+                onPress={() => dispatch(clearToken())}
+              />
+              <DefaultButton
+                title={"Sou funcionário"}
+                textColor={"#4B0082"}
+                style={[styles.logout_button, { borderColor: "#4B0082" }]}
+                onPress={() => dispatch(clearToken())}
+              />
+            </View>
+          </View>
+        </>
+      )}
+    </DefaultView>
   );
 }
 
 function DonationsScreen() {
+  const token = useSelector((state) => state.auth.token);
   return (
-    <View style={styles.container}>
-      <Text>Doações</Text>
-    </View>
+    <DefaultView style={styles.container}>
+      {token ? (
+        <DefaultView>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <DefaultTitle title={"Doações"} color={"#09BAE1"} />
+            <Icon source="hand-heart" size={32} color="#09BAE1" />
+          </View>
+          <DefaultLabel
+            label={"Faça suas contribuições e acompanhe o impacto das doações."}
+          />
+        </DefaultView>
+      ) : (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <DefaultTitle
+              color={"#09BAE1"}
+              title={"Crie uma conta ou faça login para acessar a pagina"}
+            />
+          </View>
+          <View style={{ marginTop: 100 }}>
+            <View style={{ marginTop: 20, gap: 10 }}>
+              <DefaultButton
+                title={"Login"}
+                textColor={"#fff"}
+                style={[styles.button, { backgroundColor: "#09BAE1" }]}
+              />
+              <DefaultButton
+                title={"Cadastrar"}
+                icon={"logout"}
+                textColor={"#fff"}
+                style={[styles.button, { backgroundColor: "#09BAE1" }]}
+                onPress={() => dispatch(clearToken())}
+              />
+              <DefaultButton
+                title={"Sou funcionário"}
+                textColor={"#09BAE1"}
+                style={[styles.logout_button, { borderColor: "#09BAE1" }]}
+                onPress={() => dispatch(clearToken())}
+              />
+            </View>
+          </View>
+        </>
+      )}
+    </DefaultView>
   );
 }
 
 function ProfileScreen() {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   return (
     <DefaultView>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Avatar.Text
-          label="TS"
-          style={{ backgroundColor: "#ff007a" }}
-          size={100}
-        />
-        {/* <Icon size={40} source={"pencil-circle"}/> */}
-      </View>
-      <DefaultInput
-        label={"Nome"}
-        mode="outlined"
-        secureTextEntry={false}
-        autoCorrect={true}
-        autoCapitalize={true}
-        spellCheck={true}
-        keyboardType={"default"}
-        // {...register("name", { required: "Nome é obrigatório" })}
-        // setValue={setValue}
-        // value={watch("name")}
-        // error={!!errors.name}
-        // ref={nameRef}
-        // onChangeText={(text) => {
-        //   setValue("name", text);
-        //   clearErrors("name");
-        // }}
-        // onSubmitEditing={() => phoneRef.current.focus()}
-        returnKeyType="next"
-      />
-      {/* {errors.name && (
+      {token ? (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <DefaultTitle title={"Meu perfil"} />
+            <Icon source="account" size={30} color="#ff007a" />
+          </View>
+
+          <DefaultLabel
+            label={"Gerencie suas informações pessoais e preferências"}
+          />
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Avatar.Text
+              label="TS"
+              style={{ backgroundColor: "#ff007a" }}
+              size={100}
+            />
+            {/* <Icon size={40} source={"pencil-circle"}/> */}
+          </View>
+          <DefaultInput
+            label={"Nome"}
+            mode="outlined"
+            secureTextEntry={false}
+            autoCorrect={true}
+            autoCapitalize={true}
+            spellCheck={true}
+            keyboardType={"default"}
+            // {...register("name", { required: "Nome é obrigatório" })}
+            // setValue={setValue}
+            // value={watch("name")}
+            // error={!!errors.name}
+            // ref={nameRef}
+            // onChangeText={(text) => {
+            //   setValue("name", text);
+            //   clearErrors("name");
+            // }}
+            // onSubmitEditing={() => phoneRef.current.focus()}
+            returnKeyType="next"
+          />
+          {/* {errors.name && (
             <Text style={styles.errorText}>{errors.name.message}</Text>
           )} */}
 
-      <DefaultInput
-        label={"Telefone"}
-        mode="outlined"
-        keyboardType={"numeric"}
-        autoCorrect={false}
-        autoCapitalize={false}
-        spellCheck={false}
-        maxLength={15}
-        mask={[
-          "(",
-          /\d/,
-          /\d/,
-          ")",
-          " ",
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-          "-",
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-        ]}
-        secureTextEntry={false}
-        // {...register("phone", { required: "Celular é obrigatório" })}
-        // setValue={setValue}
-        // value={watch("phone")}
-        // error={!!errors.phone}
-        // ref={phoneRef}
-        // onChangeText={(text) => {
-        //   setValue("phone", text);
-        //   clearErrors("phone");
-        // }}
-        // onSubmitEditing={() => emailRef.current.focus()}
-        returnKeyType="next"
-      />
-      {/* {errors.phone && (
+          <DefaultInput
+            label={"Telefone"}
+            mode="outlined"
+            keyboardType={"numeric"}
+            autoCorrect={false}
+            autoCapitalize={false}
+            spellCheck={false}
+            maxLength={15}
+            mask={[
+              "(",
+              /\d/,
+              /\d/,
+              ")",
+              " ",
+              /\d/,
+              /\d/,
+              /\d/,
+              /\d/,
+              /\d/,
+              "-",
+              /\d/,
+              /\d/,
+              /\d/,
+              /\d/,
+            ]}
+            secureTextEntry={false}
+            // {...register("phone", { required: "Celular é obrigatório" })}
+            // setValue={setValue}
+            // value={watch("phone")}
+            // error={!!errors.phone}
+            // ref={phoneRef}
+            // onChangeText={(text) => {
+            //   setValue("phone", text);
+            //   clearErrors("phone");
+            // }}
+            // onSubmitEditing={() => emailRef.current.focus()}
+            returnKeyType="next"
+          />
+          {/* {errors.phone && (
             <Text style={styles.errorText}>{errors.phone.message}</Text>
           )} */}
 
-      <DefaultInput
-        label={"E-mail"}
-        mode="outlined"
-        keyboardType={"default"}
-        secureTextEntry={false}
-        autoCorrect={false}
-        autoCapitalize={false}
-        spellCheck={false}
-        // {...register("email", {
-        //   required: "E-mail é obrigatório",
-        //   pattern: { value: /^\S+@\S+$/i, message: "E-mail inválido" },
-        // })}
-        // setValue={setValue}
-        // value={watch("email")}
-        // error={
-        //   !!errors.email ||
-        //   responseError === "Este e-mail já foi cadastrado."
-        // }
-        // ref={emailRef}
-        // onChangeText={(text) => {
-        //   setValue("email", text);
-        //   clearErrors("email");
-        //   setResponseError("");
-        // }}
-        // onSubmitEditing={() => passwordRef.current.focus()}
-        returnKeyType="next"
-      />
-      {/* {(errors.email ||
+          <DefaultInput
+            label={"E-mail"}
+            mode="outlined"
+            keyboardType={"default"}
+            secureTextEntry={false}
+            autoCorrect={false}
+            autoCapitalize={false}
+            spellCheck={false}
+            // {...register("email", {
+            //   required: "E-mail é obrigatório",
+            //   pattern: { value: /^\S+@\S+$/i, message: "E-mail inválido" },
+            // })}
+            // setValue={setValue}
+            // value={watch("email")}
+            // error={
+            //   !!errors.email ||
+            //   responseError === "Este e-mail já foi cadastrado."
+            // }
+            // ref={emailRef}
+            // onChangeText={(text) => {
+            //   setValue("email", text);
+            //   clearErrors("email");
+            //   setResponseError("");
+            // }}
+            // onSubmitEditing={() => passwordRef.current.focus()}
+            returnKeyType="next"
+          />
+          {/* {(errors.email ||
             responseError === "Este e-mail já foi cadastrado.") && (
             <Text style={styles.errorText}>
               {errors.email ? errors.email.message : responseError}
             </Text>
           )} */}
 
-      <DefaultInput
-        label={"Senha"}
-        mode="outlined"
-        mask={""}
-        keyboardType={"default"}
-        autoCorrect={false}
-        autoCapitalize={false}
-        spellCheck={false}
-        right={<Text>Alterar senha</Text>}
-        // secureTextEntry={showPassword}
-        // {...register("password", { required: "Senha é obrigatória" })}
-        // setValue={setValue}
-        // value={watch("password")}
-        // error={!!errors.password}
-        // ref={passwordRef}
-        // onChangeText={(text) => {
-        //   setValue("password", text);
-        //   clearErrors("password");
-        // }}
-        // onSubmitEditing={() => confirmPasswordRef.current.focus()}
-        returnKeyType="next"
-      />
-      {/* {errors.password && (
+          <DefaultInput
+            label={"Senha"}
+            mode="outlined"
+            mask={""}
+            keyboardType={"default"}
+            autoCorrect={false}
+            autoCapitalize={false}
+            spellCheck={false}
+            right={<Text>Alterar senha</Text>}
+            // secureTextEntry={showPassword}
+            // {...register("password", { required: "Senha é obrigatória" })}
+            // setValue={setValue}
+            // value={watch("password")}
+            // error={!!errors.password}
+            // ref={passwordRef}
+            // onChangeText={(text) => {
+            //   setValue("password", text);
+            //   clearErrors("password");
+            // }}
+            // onSubmitEditing={() => confirmPasswordRef.current.focus()}
+            returnKeyType="next"
+          />
+          {/* {errors.password && (
             <Text style={styles.errorText}>{errors.password.message}</Text>
           )} */}
-      <View style={{ marginTop: 20, gap: 10 }}>
-        <DefaultButton
-          title={"Salvar"}
-          textColor={"#fff"}
-          style={styles.button}
-        />
-        <DefaultButton
-          title={"Logout"}
-          icon={"logout"}
-          textColor={"#ff007a"}
-          style={styles.logout_button}
-          onPress={() => dispatch(clearToken())}
-        />
-      </View>
+          <View style={{ marginTop: 20, gap: 10 }}>
+            <DefaultButton
+              title={"Salvar"}
+              textColor={"#fff"}
+              style={styles.button}
+            />
+            <DefaultButton
+              title={"Logout"}
+              icon={"logout"}
+              textColor={"#ff007a"}
+              style={styles.logout_button}
+              onPress={() => dispatch(clearToken())}
+            />
+          </View>
+        </>
+      ) : (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <DefaultTitle
+              color={"#FD0101"}
+              title={"Crie uma conta ou faça login para acessar a pagina"}
+            />
+          </View>
+          <View style={{ marginTop: 100 }}>
+            <View style={{ marginTop: 20, gap: 10 }}>
+              <DefaultButton
+                title={"Login"}
+                textColor={"#fff"}
+                style={[styles.button, { backgroundColor: "#FD0101" }]}
+              />
+              <DefaultButton
+                title={"Cadastrar"}
+                icon={"logout"}
+                textColor={"#fff"}
+                style={[styles.button, { backgroundColor: "#FD0101" }]}
+                onPress={() => dispatch(clearToken())}
+              />
+              <DefaultButton
+                title={"Sou funcionário"}
+                textColor={"#FD0101"}
+                style={[styles.logout_button, { borderColor: "#FD0101" }]}
+                onPress={() => dispatch(clearToken())}
+              />
+            </View>
+          </View>
+        </>
+      )}
     </DefaultView>
   );
 }
