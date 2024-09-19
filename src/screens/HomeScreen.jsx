@@ -32,6 +32,16 @@ const HomeScreen = ({ navigation }) => {
         textColor={"#fff"}
         onPress={() => navigation.navigate("Register")}
       />
+      <DefaultButton
+        title="Continuar sem login"
+        style={[
+          styles["button-no-logout"],
+          { fontFamily: "Montserrat-Light" },
+        ]}
+        mode={"text"}
+        textColor={"#fff"}
+        onPress={() => navigation.navigate("Details")}
+      />
     </View>
   );
 };
@@ -57,7 +67,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20
+    borderRadius: 20,
   },
   "button-register": {
     width: "100%",
@@ -66,6 +76,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: "white",
+  },
+  "button-no-logout": {
+    width: "100%",
+    height: 50,
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
