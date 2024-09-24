@@ -1,7 +1,13 @@
 import { View, StyleSheet } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, BottomNavigation, Icon, Avatar } from "react-native-paper";
+import {
+  Text,
+  BottomNavigation,
+  Icon,
+  Avatar,
+  Button,
+} from "react-native-paper";
 import DefaultView from "../components/DefaultView";
 import DefaultLabel from "../components/DefaultLabel";
 import DefaultInput from "../components/DefaultInput";
@@ -9,15 +15,34 @@ import DefaultButton from "../components/DefaultButton";
 import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../reducers/authSlice";
 import DefaultTitle from "../components/DefaultTitle";
+import DefaultChoiceScreen from "../components/DefaultChoiceScreen";
 
 const Tab = createBottomTabNavigator();
 
 const DetailsScreen = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerShown: true,
-      }}
+        tabBarIcon: ({ focused, color, size }) => {
+          const scale = focused ? 1.5 : 1;
+          return (
+            <Animated.View style={{ transform: [{ scale }] }}>
+              <Icon
+                name={route.name === "Home" ? "home" : "settings"}
+                size={size}
+                color={color}
+              />
+            </Animated.View>
+          );
+        },
+        tabBarActiveTintColor: "#09BAE1",
+        tabBarInactiveTintColor: "#888",
+        tabBarStyle: {
+          paddingBottom: 10,
+          height: 60,
+        },
+      })}
       tabBar={({ navigation, state, descriptors, insets }) => (
         <BottomNavigation.Bar
           navigationState={state}
@@ -135,9 +160,7 @@ function HomeScreen() {
         <Icon source="calendar-star" size={30} color="#FFD700" />
       </View>
       <DefaultLabel
-        label={
-          "Fique por dentro dos próximos eventos e atividades programadas."
-        }
+        label={"Fique por dentro dos próximos eventos e atividades programadas"}
       />
     </DefaultView>
   );
@@ -161,47 +184,11 @@ function TaskScreen() {
             <Icon source="calendar-check" size={30} color="#4B0082" />
           </View>
           <DefaultLabel
-            label={"Veja seu histórico de interações e atividades recentes."}
+            label={"Veja seu histórico de interações e atividades recentes"}
           />
         </>
       ) : (
-        <>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 4,
-            }}
-          >
-            <DefaultTitle
-              title={"Crie uma conta ou faça login para acessar a pagina"}
-              color={"#4B0082"}
-            />
-          </View>
-          <View style={{ marginTop: 100 }}>
-            <View style={{ marginTop: 20, gap: 10 }}>
-              <DefaultButton
-                title={"Login"}
-                textColor={"#fff"}
-                style={[styles.button, { backgroundColor: "#4B0082" }]}
-              />
-              <DefaultButton
-                title={"Cadastrar"}
-                icon={"logout"}
-                textColor={"#fff"}
-                style={[styles.button, { backgroundColor: "#4B0082" }]}
-                onPress={() => dispatch(clearToken())}
-              />
-              <DefaultButton
-                title={"Sou funcionário"}
-                textColor={"#4B0082"}
-                style={[styles.logout_button, { borderColor: "#4B0082" }]}
-                onPress={() => dispatch(clearToken())}
-              />
-            </View>
-          </View>
-        </>
+        <DefaultChoiceScreen color={"#4B0082"} />
       )}
     </DefaultView>
   );
@@ -210,62 +197,58 @@ function TaskScreen() {
 function DonationsScreen() {
   const token = useSelector((state) => state.auth.token);
   return (
-    <DefaultView style={styles.container}>
+    <DefaultView>
       {token ? (
-        <DefaultView>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 4,
-            }}
-          >
-            <DefaultTitle title={"Doações"} color={"#09BAE1"} />
-            <Icon source="hand-heart" size={32} color="#09BAE1" />
-          </View>
-          <DefaultLabel
-            label={"Faça suas contribuições e acompanhe o impacto das doações."}
-          />
-        </DefaultView>
-      ) : (
-        <>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 4,
-            }}
-          >
-            <DefaultTitle
-              color={"#09BAE1"}
-              title={"Crie uma conta ou faça login para acessar a pagina"}
+        <View style={{ gap: 60 }}>
+          <View style={{ gap: 20 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              <DefaultTitle title={"Doações"} color={"#09BAE1"} />
+              <Icon source="hand-heart" size={32} color="#09BAE1" />
+            </View>
+            <DefaultLabel
+              label={
+                "Fique por dentro dos próximos eventos e atividades programadas"
+              }
             />
           </View>
-          <View style={{ marginTop: 100 }}>
-            <View style={{ marginTop: 20, gap: 10 }}>
-              <DefaultButton
-                title={"Login"}
-                textColor={"#fff"}
-                style={[styles.button, { backgroundColor: "#09BAE1" }]}
-              />
-              <DefaultButton
-                title={"Cadastrar"}
-                icon={"logout"}
-                textColor={"#fff"}
-                style={[styles.button, { backgroundColor: "#09BAE1" }]}
-                onPress={() => dispatch(clearToken())}
-              />
-              <DefaultButton
-                title={"Sou funcionário"}
-                textColor={"#09BAE1"}
-                style={[styles.logout_button, { borderColor: "#09BAE1" }]}
-                onPress={() => dispatch(clearToken())}
-              />
-            </View>
+          <View
+            style={{
+              gap: 20,
+              justifyContent: "center", // Centraliza o conteúdo verticalmente
+              alignItems: "center", // Centraliza o conteúdo horizontalmente
+            }}
+          >
+            <DefaultButton
+              mode={"outlined"}
+              title={"Agendar doação"}
+              textColor={"#09BAE1"}
+              icon={"calendar"}
+              style={[
+                styles.button,
+                { backgroundColor: "#ffffff00", borderColor: "#09BAE1" },
+              ]}
+            />
+            <DefaultButton
+              mode={"outlined"}
+              title={"Transferir valor"}
+              textColor={"#09BAE1"}
+              icon={"hand-coin-outline"}
+              style={[
+                styles.button,
+                { backgroundColor: "#ffffff00", borderColor: "#09BAE1" },
+              ]}
+            />
           </View>
-        </>
+        </View>
+      ) : (
+        <DefaultChoiceScreen color={"#09BAE1"} />
       )}
     </DefaultView>
   );
@@ -288,7 +271,7 @@ function ProfileScreen() {
             }}
           >
             <DefaultTitle title={"Meu perfil"} />
-            <Icon source="account" size={30} color="#ff007a" />
+            <Icon source="account" size={30} color="#FD0101" />
           </View>
 
           <DefaultLabel
@@ -297,7 +280,7 @@ function ProfileScreen() {
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Avatar.Text
               label="TS"
-              style={{ backgroundColor: "#ff007a" }}
+              style={{ backgroundColor: "#FD0101" }}
               size={100}
             />
             {/* <Icon size={40} source={"pencil-circle"}/> */}
@@ -384,7 +367,7 @@ function ProfileScreen() {
             // value={watch("email")}
             // error={
             //   !!errors.email ||
-            //   responseError === "Este e-mail já foi cadastrado."
+            //   responseError === "Este e-mail já foi cadastrado"
             // }
             // ref={emailRef}
             // onChangeText={(text) => {
@@ -396,7 +379,7 @@ function ProfileScreen() {
             returnKeyType="next"
           />
           {/* {(errors.email ||
-            responseError === "Este e-mail já foi cadastrado.") && (
+            responseError === "Este e-mail já foi cadastrado") && (
             <Text style={styles.errorText}>
               {errors.email ? errors.email.message : responseError}
             </Text>
@@ -436,62 +419,20 @@ function ProfileScreen() {
             <DefaultButton
               title={"Logout"}
               icon={"logout"}
-              textColor={"#ff007a"}
+              textColor={"#FD0101"}
               style={styles.logout_button}
               onPress={() => dispatch(clearToken())}
             />
           </View>
         </>
       ) : (
-        <>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 4,
-            }}
-          >
-            <DefaultTitle
-              color={"#FD0101"}
-              title={"Crie uma conta ou faça login para acessar a pagina"}
-            />
-          </View>
-          <View style={{ marginTop: 100 }}>
-            <View style={{ marginTop: 20, gap: 10 }}>
-              <DefaultButton
-                title={"Login"}
-                textColor={"#fff"}
-                style={[styles.button, { backgroundColor: "#FD0101" }]}
-              />
-              <DefaultButton
-                title={"Cadastrar"}
-                icon={"logout"}
-                textColor={"#fff"}
-                style={[styles.button, { backgroundColor: "#FD0101" }]}
-                onPress={() => dispatch(clearToken())}
-              />
-              <DefaultButton
-                title={"Sou funcionário"}
-                textColor={"#FD0101"}
-                style={[styles.logout_button, { borderColor: "#FD0101" }]}
-                onPress={() => dispatch(clearToken())}
-              />
-            </View>
-          </View>
-        </>
+        <DefaultChoiceScreen color={"#FD0101"} />
       )}
     </DefaultView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
   button: {
     backgroundColor: "#ff007a",
     width: "100%",
@@ -499,6 +440,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
+  },
+
+  donation_button: {
+    width: "100%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
   },
 
   logout_button: {
