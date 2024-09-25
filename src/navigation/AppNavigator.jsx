@@ -36,10 +36,8 @@ const AppNavigator = () => {
         // },
       }}
     >
-      {isAuthenticated ? (
-        <>
-        </>
-      ) : (
+ 
+
         <>
         <Stack.Screen
           name="Details"
@@ -80,7 +78,7 @@ const AppNavigator = () => {
             options={{ headerShown: true, headerTitle: ""}}
           />
         </>
-      )}
+    
     </Stack.Navigator>
   </NavigationContainer>
   );
