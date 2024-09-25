@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Button, Text } from "react-native-paper";
 import DefaultButton from "../components/DefaultButton";
 
-const ConfirmOTPCode = () => {
+const ConfirmOTPCodeScreen = () => {
   const [secondsRemaining, setSecondsRemaining] = useState(120);
   const [isActive, setIsActive] = useState(true);
 
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConfirmOTPCode;
+export default ConfirmOTPCodeScreen;

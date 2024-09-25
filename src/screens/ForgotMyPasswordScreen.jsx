@@ -8,9 +8,10 @@ import { useForm } from "react-hook-form";
 import DefaultLabel from "../components/DefaultLabel";
 import DefaultSpinner from "../components/DefaultSpinner";
 
-const ForgotMyPassword = ({ navigation }) => {
+const ForgotMyPasswordScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [responseError, setResponseError] = useState("");
+  const passwordRef = useRef(null);
 
   const {
     register,
@@ -71,7 +72,7 @@ const ForgotMyPassword = ({ navigation }) => {
               setValue("email", text);
               clearErrors("email");
             }}
-            onSubmitEditing={() => passwordRef.current.focus()}
+            // onSubmitEditing={() => passwordRef.current.focus()}
             returnKeyType="next"
           />
           {errors.email && (
@@ -120,4 +121,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotMyPassword;
+export default ForgotMyPasswordScreen;

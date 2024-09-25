@@ -5,11 +5,11 @@ import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import ForgotMyPassword from "../screens/ForgotMyPasswordScreen";
+import ForgotMyPasswordScreen from "../screens/ForgotMyPasswordScreen";
 import useAuthNavigation from "../services/auth/useAuthNavigation";
-import { Avatar, Button } from "react-native-paper";
+import { Avatar } from "react-native-paper";
 import DefaultSpinner from "../components/DefaultSpinner";
-import ConfirmOTPCode from "../screens/ConfirmOTPCode";
+import ConfirmOTPCodeScreen from "../screens/ConfirmOTPCodeScreen";
 import { Easing } from "react-native";
 
 const Stack = createStackNavigator();
@@ -102,12 +102,12 @@ const AppNavigator = () => {
           />
           <Stack.Screen
             name="Forgot my password"
-            component={ForgotMyPassword}
+            component={ForgotMyPasswordScreen}
             options={{ headerShown: true, headerTitle: "" }}
           />
           <Stack.Screen
             name="Confirm OTP Code"
-            component={ConfirmOTPCode}
+            component={ConfirmOTPCodeScreen}
             options={{ headerShown: true, headerTitle: "" }}
           />
         </>
