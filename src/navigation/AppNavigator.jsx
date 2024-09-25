@@ -11,6 +11,7 @@ import { Avatar } from "react-native-paper";
 import DefaultSpinner from "../components/DefaultSpinner";
 import ConfirmOTPCodeScreen from "../screens/ConfirmOTPCodeScreen";
 import { Easing } from "react-native";
+import ScheduleDonationScreen from "../screens/ScheduleDonationScreen";
 
 const Stack = createStackNavigator();
 
@@ -108,6 +109,11 @@ const AppNavigator = () => {
           <Stack.Screen
             name="Confirm OTP Code"
             component={ConfirmOTPCodeScreen}
+            options={{ headerShown: true, headerTitle: "" }}
+          />
+          <Stack.Screen
+            name="Schedule Donation"
+            component={ScheduleDonationScreen}
             options={{ headerShown: true, headerTitle: "" }}
           />
         </>

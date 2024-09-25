@@ -194,7 +194,7 @@ function TaskScreen() {
   );
 }
 
-function DonationsScreen() {
+function DonationsScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
   return (
     <DefaultView>
@@ -234,6 +234,7 @@ function DonationsScreen() {
                 styles.button,
                 { backgroundColor: "#ffffff00", borderColor: "#09BAE1" },
               ]}
+              onPress={() => navigation.navigate("Schedule Donation")}
             />
             <DefaultButton
               mode={"outlined"}
