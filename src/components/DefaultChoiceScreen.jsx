@@ -2,8 +2,10 @@
 import DefaultTitle from "./DefaultTitle";
 import DefaultButton from "./DefaultButton";
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const DefaultChoiceScreen = ({ color }) => {
+  const navigation = useNavigation();
   return (
     <>
       <View
@@ -25,19 +27,20 @@ const DefaultChoiceScreen = ({ color }) => {
             title={"Login"}
             textColor={"#fff"}
             style={[styles.button, { backgroundColor: color }]}
+            onPress={() => navigation.navigate("Login")}
           />
           <DefaultButton
             title={"Cadastrar"}
             icon={"logout"}
             textColor={"#fff"}
             style={[styles.button, { backgroundColor: color }]}
-            onPress={() => dispatch(clearToken())}
+            onPress={() => navigation.navigate("Register")}
           />
           <DefaultButton
             title={"Sou funcionário"}
             textColor={color}
             style={[styles.logout_button, { borderColor: color }]}
-            onPress={() => dispatch(clearToken())}
+            onPress={() => navigation.navigate("Choice")}
           />
         </View>
       </View>

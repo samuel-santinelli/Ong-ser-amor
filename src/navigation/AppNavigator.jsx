@@ -15,82 +15,78 @@ import { Easing } from "react-native";
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const { isAuthenticated } = useAuthNavigation(true);  
+  const { isAuthenticated } = useAuthNavigation(true);
 
   if (isAuthenticated === null) {
-    return (
-      <DefaultSpinner/>
-    );
+    return <DefaultSpinner />;
   }
 
   return (
     <NavigationContainer>
-    <Stack.Navigator
-      initialRouteName={isAuthenticated ? "Details" : "Home"}
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#ff007a",
-        },
-        headerTintColor: "#fff",
-        // headerTitleStyle: {
-        //   fontFamily: "Montserrat-SemiBold",
-        // },
-        animationEnabled: true,  // Habilitar animação entre telas
-        gestureEnabled: true,    // Habilitar gesto de "voltar"
-        gestureDirection: "horizontal",  // Define a direção da animação (horizontal/vertical)
+      <Stack.Navigator
+        initialRouteName={isAuthenticated ? "Details" : "Home"}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ff007a",
+          },
+          headerTintColor: "#fff",
+          // headerTitleStyle: {
+          //   fontFamily: "Montserrat-SemiBold",
+          // },
+          animationEnabled: true, // Habilitar animação entre telas
+          gestureEnabled: true, // Habilitar gesto de "voltar"
+          gestureDirection: "horizontal", // Define a direção da animação (horizontal/vertical)
 
-        // Configuração de animação personalizada
-        transitionSpec: {
-          open: {
-            animation: 'timing',
-            config: {
-              duration: 550,   // Duração da animação ao abrir
-              easing: Easing.out(Easing.poly(4)),  // Efeito de suavização da animação
+          // Configuração de animação personalizada
+          transitionSpec: {
+            open: {
+              animation: "timing",
+              config: {
+                duration: 550, // Duração da animação ao abrir
+                easing: Easing.out(Easing.poly(4)), // Efeito de suavização da animação
+              },
+            },
+            close: {
+              animation: "timing",
+              config: {
+                duration: 550, // Duração da animação ao fechar
+                easing: Easing.in(Easing.poly(4)),
+              },
             },
           },
-          close: {
-            animation: 'timing',
-            config: {
-              duration: 550,   // Duração da animação ao fechar
-              easing: Easing.in(Easing.poly(4)),
-            },
+          // Estilo de animação
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
           },
-        },
-        // Estilo de animação
-        cardStyleInterpolator: ({ current, layouts }) => {
-          return {
-            cardStyle: {
-              transform: [
-                {
-                  translateX: current.progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [layouts.screen.width, 0],
-                  }),
-                },
-              ],
-            },
-          };
-        },
-      }}
-    >
- 
-
+        }}
+      >
         <>
-        <Stack.Screen
-          name="Details"
-          component={DetailsScreen}              
-          options={{
-            headerShown: false,                
-            headerLeft: () => {
-              <Avatar.Text size={24} label="XD" />;
-            },
-            headerRight: () => {
-              <Avatar.Text size={24} label="SA"/>
-            }
-          }}
-        />
           <Stack.Screen
-            name="Home"
+            name="Details"
+            component={DetailsScreen}
+            options={{
+              headerShown: false,
+              headerLeft: () => {
+                <Avatar.Text size={24} label="XD" />;
+              },
+              headerRight: () => {
+                <Avatar.Text size={24} label="SA" />;
+              },
+            }}
+          />
+          <Stack.Screen
+            name="Choice"
             component={HomeScreen}
             options={{ headerShown: false }}
           />
@@ -107,17 +103,16 @@ const AppNavigator = () => {
           <Stack.Screen
             name="Forgot my password"
             component={ForgotMyPassword}
-            options={{ headerShown: true, headerTitle: ""}}
+            options={{ headerShown: true, headerTitle: "" }}
           />
           <Stack.Screen
             name="Confirm OTP Code"
             component={ConfirmOTPCode}
-            options={{ headerShown: true, headerTitle: ""}}
+            options={{ headerShown: true, headerTitle: "" }}
           />
         </>
-    
-    </Stack.Navigator>
-  </NavigationContainer>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
