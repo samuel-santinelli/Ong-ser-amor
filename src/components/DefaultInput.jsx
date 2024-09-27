@@ -19,6 +19,7 @@ const DefaultInput = forwardRef(
       autoCapitalize,
       spellCheck,
       keyboardType,
+      onPress,
       ...rest
     },
     ref
@@ -41,6 +42,7 @@ const DefaultInput = forwardRef(
         secureTextEntry={secureTextEntry}
         right={right}
         onChangeText={(text) => setValue(name, text)}
+        onPress={onPress}
         value={value}
         ref={ref}
         error={error}

@@ -271,7 +271,7 @@ function ProfileScreen() {
               gap: 4,
             }}
           >
-            <DefaultTitle title={"Meu perfil"} />
+            <DefaultTitle title={"Meu perfil"} color={"#FD0101"} />
             <Icon source="account" size={30} color="#FD0101" />
           </View>
 
@@ -435,7 +435,7 @@ function ProfileScreen() {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#ff007a",
+    backgroundColor: "#FD0101",
     width: "100%",
     height: 50,
     justifyContent: "center",
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
   },
 
   logout_button: {
-    borderColor: "#ff007a",
+    borderColor: "#FD0101",
     borderWidth: 2,
     width: "100%",
     height: 50,
