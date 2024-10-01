@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { removeToken, storeToken } from '../services/token/TokenManager';
 
 const initialState = {
-  token: null, // Estado inicial sem token
+  token: null, 
 };
 
 const authSlice = createSlice({
